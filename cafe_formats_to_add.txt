@@ -1,0 +1,42 @@
+##### Welcome to my Mini-Project! #####
+print('Welcome to the Cafe, here are your options:')
+print('0. Exit App')
+print('1. Go to Product Menu')
+
+#Note to self, variables with clear names assigned to lists
+## categories:
+categories = ['1. Sandwhiches', '2. Soups', '3. Snacks', '4. Bakery', '5. Hot Drinks', '6. Cold Drinks']
+sandwhiches = ['Cheese Sandwhich', 'Tuna Sandwhich', 'Egg Sandwhich']
+soups = ['Tomato Soup', 'Chicken Soup', 'Veggie Soup']
+#snacks = ['Ready Salted Crisps', 'Snickers']
+## bakery = ['Muffins', 'Cookies', 'Brownies']
+## hot_drinks = ['Tea', 'Latte', 'Cappucino']
+## cold_drinks = ['Water', 'Coke', 'Orange Juice']
+##
+##See strings part in slides in how to format strings for menu
+##
+#testing: products_list = ['Sandhwhich', 'Crisps', 'Coffee']
+while (True): #to loop to main menu, so nothing breaks 
+    main_menu = int(input('Please select your option: '))
+    if main_menu == 0:
+        print('Exiting app...')
+        break
+    elif main_menu == 1:
+            for category in categories:
+                print(category) ###Product Menu categories show up here
+    menu_option = int(input('Please select your option: '))
+    if menu_option == 1:
+        for sandwhich in sandwhiches:
+            print(sandwhich)
+    elif menu_option == 2:
+        for soup in soups:
+            print (soup)
+## want to go back just to categories back here
+            
+#Products here
+Sandwhiches
+Soups
+Snacks
+Bakery
+Hot Drinks
+Cold Drinks
