@@ -1,0 +1,42 @@
+
+orders_log = {
+    #key #value
+    "order1 + '\n'" : {
+"customer_name": "Tony Stark",
+"customer_address": "Avengers Tower, 5th Street, NYC, WH1 2ER",
+"customer_phone": "0789887334",
+"courier": 1,
+"status": "preparing"
+},
+    "\n order2" : {
+"customer_name": "Steve Rogers",
+"customer_address": " 569 Leaman Place, Brooklyn, NYC, WH1 2ER",
+"customer_phone": "0789812343",
+"courier": 2,
+"status": "preparing"
+}, 
+    "\n order3" : {
+"customer_name": "Bruce Wayne",
+"customer_address": " Wayne Manor, Gotham, 3AT X4N",
+"customer_phone": "0789812339",
+"courier": 3,
+"status": "preparing"
+}
+}
+for key, value in orders_log.items():
+    print(key, value) ##THIS WILL ALLOW ME TO PRINT IT IN NEW LINE
+    # for key, value in orders_log.items():
+#     print(key, value) ##THIS WILL ALLOW ME TO PRINT IT IN NEW LINE
+
+# from pprint import pprint
+# pprint(orders_log)    sort of worked but messy
+# #=======closest so far:
+# import pprint
+# pp = pprint.PrettyPrinter(depth=5)
+# pp.pprint(orders_log)
+
+# #Works, but prints things in the wrong order??
+#     #depth specifies the depth of nested objects that are inspected.
+# ====
+#print(json.dumps(orders_log, sort_keys=True, indent=10, default=str)) 
+##This looks good but keeps the brackets in #Indent higher amount allows all lines to be on one line so not scattered

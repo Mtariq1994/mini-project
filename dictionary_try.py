@@ -19,11 +19,24 @@
 
 # print(orders['customer name'], orders['customer address'], orders['phone number'])
 
+# orders = {
+#     #key #value
+# "customer_name": "John",
+# "customer_address": "Unit 2, 12 Main Street, LONDON, WH1 2ER",
+# "customer_phone": "0789887334",
+# "courier": 1,
+# "status": "preparing"
+# }
+# for key, value in orders.items():
+#     print(key, ':',value)
+    
 orders = {
     #key #value
-"customer_name": "John",
-"customer_address": "Unit 2, 12 Main Street, LONDON, WH1 2ER",
+"customer_name": "Tony",
+"customer_address": "Avengers Tower, 5th Street, NYC, WH1 2ER",
 "customer_phone": "0789887334",
 "courier": 1,
 "status": "preparing"
 }
+for key, value in orders.items():
+    print(key, ' : ',value)

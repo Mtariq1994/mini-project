@@ -1,3 +1,5 @@
+import json
+from order_list import orders_log
 products_list_txt_file = open("products_list.txt", 'r+')#Files i will use
 products_list_txt = products_list_txt_file.readlines() # do i need this? i dont get what its doing here
 #new_product = products_list_txt_file
@@ -89,15 +91,16 @@ Welcome to Courier Options menu, please select your option
 #Would creating a function for menu be easier?
 #Look at notepad for things to add, definetly want to investigate OS and time?
 #categories for each product #####################WEEK 3####################################################
-                orders = {
-    #key #value
-"customer_name": "Tony",
-"customer_address": "Avengers Tower, 5th Street, NYC, WH1 2ER",
-"customer_phone": "0789887334",
-"courier": 1,
-"status": "preparing"
-}
-
+#             orders = {
+#     #key #value
+# "customer_name": "Tony",
+# "customer_address": "Avengers Tower, 5th Street, NYC, WH1 2ER",
+# "customer_phone": "0789887334",
+# "courier": 1,
+# "status": "preparing"
+# }
+# for key, value in orders.items():
+#     print(key, ' : ',value)
 
 
     elif main_menu == 3:
@@ -113,6 +116,49 @@ Welcome to Orders Menu, please select your option
             if order_options_menu == 0:
                 print('Returning to Main Menu...')
                 break ###working so far
-            elif order_options_menu == 1:
-                for key,value in orders.iteritems():
-                    print (key,value) #Orders is not defined? but i dont get why?
+            elif order_options_menu == 1: ###Stuck here
+            #     for key, value in orders.items():
+            #         print(key, ' : ',value)  
+            # #Orders is not defined? but i dont get why?, works if i print it together
+            
+                with open('order_list.py', 'r+') as orders_list:
+                    order_read = orders_list.readlines()
+                    for key, value in orders_log.items():
+                        #print(key,":",value) ###4/2/22 CURRENT but prints in one line
+                        print(json.dumps(orders_log, sort_keys=True, indent=7, default=str))#prints nicely but a bit of weird spaces
+                        #print(key,":",value, + "\n") This didnt work
+                    #for item in (order_read):
+                        #print(item.strip()) 
+            #             ####This shows the dictionary,not sure its right ? ###TRY 1
+            #at the top i imported orders_log from order_list
+            ##I like this! but how do i print a newline for each value
+                        
+            
+                # import order_list
+                
+                # print(order_list.orders_log)
+                
+                #         ####TRY 2 this sort of works but how to print on new line
+                # import order_list
+                # order_read = order_list.readlines()
+                # for order in order_read:
+                #     print(order_list.orders_log)
+                
+                        ####TRY 3 does NOT work
+            
+            
+            
+            
+            
+            
+            #TODAY:Review SPEC: From here see if its correct to have dictionary in a different file,
+            # and if i can fit multiple orders in the main dictionary and print them
+            
+            # with open('order_list.py', 'r+') as orders_list:
+            #         x = orders_list.readlines()
+            #         for index,item in enumerate(x):
+            #             print(index,item.strip()) ##This displayed it but with indexed items (i guess easier to delete)
+            
+            
+            ##Read first: Managed to print the dictionary looking ok, 
+            # now need user input to add another dict and store it in that dictionary, for each Key Value pair already there
