@@ -1,4 +1,6 @@
+from ctypes import addressof
 import json
+from turtle import update
 from order_list import orders_log
 products_list_txt_file = open("products_list.txt", 'r+')#Files i will use
 products_list_txt = products_list_txt_file.readlines() # do i need this? i dont get what its doing here
@@ -110,55 +112,103 @@ Welcome to Orders Menu, please select your option
 -----------------------
 0- Return to Main Menu
 1 - Show orders
-2 - Create order 
+2 - Create order
+3 - Update order 
+4 - Update existing order
+5 - Delete order
 """)
+
             order_options_menu = int(input('Please select your option: '))
             if order_options_menu == 0:
                 print('Returning to Main Menu...')
                 break ###working so far
             elif order_options_menu == 1: ###Stuck here
-            #     for key, value in orders.items():
+            #     for key, value in orders_log.items():
             #         print(key, ' : ',value)  
-            # #Orders is not defined? but i dont get why?, works if i print it together
+            # # #works but doesnt print in seperate lines
             
-                with open('order_list.py', 'r+') as orders_list:
-                    order_read = orders_list.readlines()
-                    for key, value in orders_log.items():
-                        #print(key,":",value) ###4/2/22 CURRENT but prints in one line
-                        print(json.dumps(orders_log, sort_keys=True, indent=7, default=str))#prints nicely but a bit of weird spaces
-                        #print(key,":",value, + "\n") This didnt work
-                    #for item in (order_read):
-                        #print(item.strip()) 
-            #             ####This shows the dictionary,not sure its right ? ###TRY 1
-            #at the top i imported orders_log from order_list
-            ##I like this! but how do i print a newline for each value
-                        
-            
-                # import order_list
+                # with open('order_list.py', 'r+') as orders_list: #not sure need
+                #     order_read = orders_list.readlines() #not sure need, already imported order_list
+                for order in orders_log:
+                    #print(order.get('customer_name'))  ###Print manually whatever i want if i dont want brackets.  
+                    print(json.dumps(order, sort_keys=False, indent=2, default=str))
+                    
+                    #print(json.dumps(orders_log, sort_keys=True, indent=2, default=str))
+                        #second option of menu
+                        #to add a new order: create a dictionary and append to orders log 
+                        #  orders_log.append(new_orders_dictionary) 
+                        ##alex notes these few lines
+                        #research how to add dictionary to a list with input python
+            elif order_options_menu == 2:
+               
+                customer_name = input("What is customer name?")
+                address = input("what is their address?")
+                phone_number = input("what is their phone number?")
+                for index,item in enumerate(courier_list): #Shows courier
+                    print(index,item.strip())
+                courier = input("What is Courier number?")
+                #status = input("what is order status?")
+                new_order= {
+                    "customer_name": customer_name,
+                    "customer_address": address,
+                    "customer_phone": phone_number,
+                    "courier": courier,
+                    "status": "preparing"
+                    }
+                orders_log.append(new_order)
                 
-                # print(order_list.orders_log)
+                print(orders_log) ##Review mini project and see whats next
+#                ##=========
+
+            elif order_options_menu == 3:
                 
-                #         ####TRY 2 this sort of works but how to print on new line
-                # import order_list
-                # order_read = order_list.readlines()
-                # for order in order_read:
-                #     print(order_list.orders_log)
+                #print("select index of order you would you like to update?")
+                for index,item in enumerate(orders_log):
+                    #print(index,item.strip())
+                    print(index,item)
+                chosen_order = int(input('Which order status would you like to update?'))
+                new_status = input('enter new status')
                 
-                        ####TRY 3 does NOT work
-            
-            
-            
-            
-            
-            
-            #TODAY:Review SPEC: From here see if its correct to have dictionary in a different file,
-            # and if i can fit multiple orders in the main dictionary and print them
-            
-            # with open('order_list.py', 'r+') as orders_list:
-            #         x = orders_list.readlines()
-            #         for index,item in enumerate(x):
-            #             print(index,item.strip()) ##This displayed it but with indexed items (i guess easier to delete)
-            
-            
-            ##Read first: Managed to print the dictionary looking ok, 
-            # now need user input to add another dict and store it in that dictionary, for each Key Value pair already there
+                orders_log[chosen_order]['status'] = new_status ##So i open the part of the dictionary i want and i update its key
+
+            elif order_options_menu == 4: #update existing order
+                for index,item in enumerate(orders_log):
+                    print(index,item) 
+                indexed_order = int(input('Which order would you like to update?'))
+                
+                new_name = input('What do you want to change the name to? (blank for no change): ')
+                new_address = input('What do you want to change the address to? (blank for no change): ')
+                new_number = input('what do you want to change the number to? (blank for no change): ')
+                for index,item in enumerate(courier_list):
+                    print(index,item)
+                new_courier = input('what do you want to change the courier to? (blank for no change): ')
+                if new_name == '':
+                    pass
+                else:
+                    orders_log[indexed_order]['customer_name'] = new_name
+                if new_address =='':
+                    pass
+                else: 
+                    orders_log[indexed_order]['customer_address'] = new_address
+                if new_number == '':
+                    pass
+                else:
+                    orders_log[indexed_order]['customer_phone'] = new_number
+                if new_courier == '':
+                    pass
+                else:
+                    orders_log[indexed_order]['courier'] = new_courier
+                print('Here is your new list of orders')
+                print(orders_log)        
+            elif order_options_menu == 5:
+                for index,item in enumerate(orders_log):
+                    #print(index,item.strip())
+                    print(index,item)    
+                delete_order = int(input('Which order would you like to delete?'))
+                del orders_log[delete_order]
+                #########WEEK 3 COMPLETE 10/2/22
+                #Have not persisted update orders section 
+                # Have not done any unit testing
+                #week4:
+                #writing to csv, everywhere ive used txt files update to csv
+                #
