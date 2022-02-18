@@ -185,7 +185,7 @@ Welcome to Orders Menu, please select your option
                 if new_name == '':
                     pass
                 else:
-                    orders_log[indexed_order]['customer_name'] = new_name
+                    orders_log[indexed_order]['customer_name'] = new_name #here i select the order by index and one by one update its values
                 if new_address =='':
                     pass
                 else: 

@@ -1,0 +1,18 @@
+Sandwhiches 
+"name": "Tuna Sandwhich",
+ "Price": 1.2 //Float 
+Soups 
+"name": "Tomato Soup",
+"Price": 1.5
+Snacks 
+"name": "Snickers",
+"Price": 0.6
+Bakery 
+"name": "Croissant",
+"Price": 0.8
+Hot Drinks 
+"name": "Tea",
+"Price": 0.8
+Cold Drinks 
+"name": "Sprite",
+"Price": 0.7

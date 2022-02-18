@@ -1,5 +1,5 @@
-print ("Hello world")
-#Just opening up VSC, making sure it works
+# print ("Hello world")
+# #Just opening up VSC, making sure it works
 
 
 # Sandwhiches
@@ -8,3 +8,4 @@ print ("Hello world")
 # Bakery
 # Hot Drinks
 # Cold Drinks
+
