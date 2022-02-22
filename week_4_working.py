@@ -239,4 +239,5 @@ Welcome to Orders Menu, please select your option
 
 ##Week 4 is complete i can complete the next section as a stretch goal [read it from csv and save] and move on to databases
 #See update_order_csv function and create a function using below
+#Stretch goals 4/5 of week four are not done, i have some code in week3 for stretch goal 4 if needed.
 #==============
