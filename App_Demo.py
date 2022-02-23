@@ -30,7 +30,7 @@ def display_products():
                     rows = cursor.fetchall()
                     for row in rows:
                         print(row)
-#Display customers from mySQL Miniproject database 
+#Display customers from mySQL Miniproject database //not used, use for week6 possibly
 def display_db_customers():
                     connection = connect_to_db()
                     cursor = connection.cursor()
