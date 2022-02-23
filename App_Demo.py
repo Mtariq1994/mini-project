@@ -6,7 +6,6 @@ from order_list import orders_log
 import os
 from dotenv import load_dotenv
 
-
 load_dotenv()
 host = os.environ.get("mysql_host")
 user = os.environ.get("mysql_user")
@@ -40,7 +39,7 @@ def display_db_customers():
                     for row in rows:
                         print(row)
 #new function
-def display_one_db_customer(): #CONFUSED
+def display_one_db_customer(): #CONFUSED[week 6 goals, not relevant rn]
                     connection = connect_to_db()
                     cursor = connection.cursor()
                     cursor.execute('SELECT * FROM  customers where id={customer_id}')
@@ -111,8 +110,16 @@ def read_csv(csv_file_name):
             data.append(row)
             #return data
     return data
-###############
 #Adding to Product CSV file function
+#Function to display order nicely from CSV
+def read_order():
+        with open('order_list.csv', 'r') as read_obj:
+    # pass the file object to reader() to get the reader object
+            csv_reader = reader(read_obj)
+    # Iterate over each row in the csv using reader object
+            for row in csv_reader:
+        # row variable is a list that represents a row in csv
+             print(row)
 def add_csv(open_file):
     #data = []     
     product_name = input("add product: ")
@@ -122,8 +129,6 @@ def add_csv(open_file):
         field_name = ["product name", "product price"]
         writer = csv.DictWriter(file,fieldnames=field_name, delimiter=',')
         writer.writerow(product_dictionary)
-        #return data
-#####
 ##Courier add function
 def add_courier():
     data = [] #dont think this is needed    
@@ -135,7 +140,6 @@ def add_courier():
         writer = csv.DictWriter(file,fieldnames=field_name, delimiter=',')
         writer.writerow(courier_dictionary)
         return data
-    ###
 #Delete product function
 def delete_product_csv():
     data = []
@@ -151,7 +155,6 @@ def delete_product_csv():
         else:
             print('Sorry! product "{}" not found.'.format(del_prod)) #this works but applies only to products and no index
     return data
-####
 #Delete courier function
 def delete_courier_csv():
     data = []
@@ -160,7 +163,7 @@ def delete_courier_csv():
         deleting = f.readlines()
         courier_found = [x for x in deleting if x.split(',')[0].lower() == del_courier.lower()]
         if courier_found:
-            print('Remove you product: {}'.format(del_courier))
+            print('Remove: {}'.format(del_courier))
             deleting.remove(courier_found[0])
             with open('courier_list.csv', 'w') as f:
                 f.write(''.join(deleting))
@@ -181,22 +184,6 @@ def add_order_csv():
         field_name = ["customer_name", "customer_address", "customer_phone", "courier", "status"]
         writer = csv.DictWriter(file,fieldnames=field_name, delimiter=',')
         writer.writerow(order_dictionary)
-# def add_order_csv():      ORDER INCLUDING CHOICE OF FOOD, DOES NOT LINK TO DATABASE.
-#     customer_name = input("add customer name: ")
-#     customer_address = input("what is their address?: ")
-#     customer_phone = input("what is their phone number?")
-#     display_products()
-#     choice = input("Type in what product they would like ?") #ideally index the products for ease of choice and so it dont break code, also this does not match database at all
-#     for index,item in enumerate(couriers): 
-#                     print(index,item)#Shows courier for ease of choosing which one
-#     courier = input("What is Courier number?: ")
-#     status = input("what is their status?: ")
-#     order_dictionary = {"customer_name":customer_name, "customer_address": customer_address, "customer_phone": customer_phone, "choice": choice, "courier": courier, "status": status}
-#     with open("order_list.csv", mode='a', newline='') as file:
-#         field_name = ["customer_name", "customer_address", "customer_phone","choice", "courier", "status"]
-#         writer = csv.DictWriter(file,fieldnames=field_name, delimiter=',')
-#         writer.writerow(order_dictionary)
-#########
 #Update order Function CSV
 def update_order_csv():
     status_change = ["preparing", "out-for-delivery", "delivered"]
@@ -224,22 +211,9 @@ def update_order_csv():
 products = read_csv('products_list.csv')
 couriers = read_csv('courier_list.csv')
 orders = read_csv('order_list.csv')
-# open file in read mode
-#to display orders nicely line by line
-def read_order():
-        with open('order_list.csv', 'r') as read_obj:
-    # pass the file object to reader() to get the reader object
-            csv_reader = reader(read_obj)
-    # Iterate over each row in the csv using reader object
-            for row in csv_reader:
-        # row variable is a list that represents a row in csv
-             print(row)
 ###////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-
-
-courier_list = open("courier_list.txt", 'r+') #Files i will use
-while (True):
-    print('Welcome to Cafe Leaf, here are your options:')
+while (True): #could add a function here for menu instead and just call that.
+    print('Welcome to Cafe Leaf!, here are your options:')
     print('0. Exit App')
     print('1. Go to Product Options Menu')
     print('2. Go to Courier Options Menu')   
@@ -286,22 +260,13 @@ Welcome to Courier Options menu, please select your option
             courier_options_menu = int(input('Please select your option: '))
             if courier_options_menu == 0:
                 print('Returning to Main Menu...')
-                break ###working so far
-
+                break 
             elif courier_options_menu == 1: #Display courier
                 display_courier() 
             elif courier_options_menu == 2: #Add courier
-                add_db_courier()  
-                
-#####====================================================================================                
+                add_db_courier()            
             elif courier_options_menu == 3: #Delete Courier
                 del_db_courier()
-                
-
-###End of week 5, 22/2/22
-
-#######===================================================================================
-
 
     elif main_menu == 3:
         while (True):
@@ -313,7 +278,6 @@ Welcome to Orders Menu, please select your option
 2 - Create order
 3 - Update order status 
 """)
-
             order_options_menu = int(input('Please select your option: '))
             if order_options_menu == 0:
                 print('Returning to Main Menu...')
@@ -336,4 +300,7 @@ Welcome to Orders Menu, please select your option
                     print("order has been added") #ADD NEW ORDER
 #==============
 #Future steps: reivist this project and Complete week6 goals for orders using SQL/Databases
-#function for adding order needs to be reworked to be able to select products from the database and not break that side because orders have no products as of yet
+# A) function for adding order needs to be reworked to be able to select products from the database and not break that side because orders have no products as of yet
+# B) Update all of orders section
+# C) Complete all stretch goals for increased functionality
+# +) Building a usable UI would be an interesting extension to to project

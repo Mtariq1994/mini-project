@@ -1,6 +1,0 @@
-Tuna Sandwhich,1.2
-Tomato Soup,1.5
-Snickers,0.8
-Tea,0.7
-Cola,0.9
-C:/Users/moham/AppData/Local/Programs/Python/Python310/python.exe c:/Users/moham/Desktop/Generation/mini_project/week_4_working.py
